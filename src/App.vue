@@ -1,23 +1,37 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+	<transition name="fade" mode="out-in">
+	    <router-view></router-view>
+	</transition>
+	<main-nav></main-nav>
   </div>
 </template>
 
 <script>
+import mainNav from "@/components/main-nav"
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+	  "main-nav": mainNav
+  }
 }
 </script>
 
-<style>
+<style lang="scss">
+@import "./lib/sass/reset";
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: #333;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0
 }
 </style>
